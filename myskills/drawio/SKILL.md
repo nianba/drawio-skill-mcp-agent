@@ -111,6 +111,12 @@ Export command:
 drawio -x -f <png|svg|pdf|jpg> -e -b 10 -o output.drawio.png input.drawio
 ```
 
+On macOS, prefer the direct app executable when `drawio` on PATH hangs or prints Electron helper/GPU errors:
+
+```bash
+/Applications/draw.io.app/Contents/MacOS/draw.io --disable-gpu -x -f png -e -b 10 -o output.drawio.png input.drawio
+```
+
 Use `-e` / `--embed-diagram` for PNG, SVG, and PDF. After a successful embedded export, the intermediate `.drawio` may be deleted only if the exported file is the requested final source.
 
 ## Troubleshooting
@@ -120,3 +126,4 @@ Use `-e` / `--embed-diagram` for PNG, SVG, and PDF. After a successful embedded 
 - Missing edges: verify every edge has valid `source`, `target`, and child geometry.
 - XML parse failure: run the validation script and remove comments or unescaped characters.
 - Poor visual quality: export a preview, inspect it, then adjust spacing, labels, contrast, grouping, and edge routing.
+- macOS export hangs: retry with `/Applications/draw.io.app/Contents/MacOS/draw.io --disable-gpu` instead of the PATH `drawio` command.
